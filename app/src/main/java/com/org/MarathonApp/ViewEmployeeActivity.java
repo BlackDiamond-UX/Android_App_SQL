@@ -30,7 +30,7 @@ public class ViewEmployeeActivity extends AppCompatActivity {
             EmployeeAdapterClass employeadapterclass = new EmployeeAdapterClass(employeeModelClasses,ViewEmployeeActivity.this);
             recyclerView.setAdapter(employeadapterclass);
         }else {
-            Toast.makeText(this, "There is no employee in the database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "There is no candidat in the database", Toast.LENGTH_SHORT).show();
         }
 
 

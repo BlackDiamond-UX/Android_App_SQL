@@ -45,6 +45,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <EditText
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:id="@+id/edittext_age"
+        android:text="Age"
+        android:inputType="date"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:layout_margin="5dp"
         android:orientation="horizontal"

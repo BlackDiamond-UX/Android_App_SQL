@@ -26,12 +26,13 @@ public class DatabaseHelperClass extends SQLiteOpenHelper {
     public static final String NAME = "name";
     public static final String EMAIL = "email";
     public static final String VILLE ="Ville";
+    public static  final  String AGE = "age";
     private SQLiteDatabase sqLiteDatabase;
 
 
     //creating table query
     private static final String CREATE_TABLE = "create table " + TABLE_NAME +"("+ID+
-        " INTEGER PRIMARY KEY AUTOINCREMENT," + NAME + " TEXT NOT NULL,"+EMAIL+" TEXT NOT NULL,"+VILLE+" TEXT NOT NULL);";
+        " INTEGER PRIMARY KEY AUTOINCREMENT," + NAME + " TEXT NOT NULL,"+EMAIL+" TEXT NOT NULL,"+VILLE+" TEXT NOT NULL,"+AGE+" DATE NOT NULL);";
     //Constructor
     public DatabaseHelperClass (Context context){
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -54,6 +55,7 @@ public class DatabaseHelperClass extends SQLiteOpenHelper {
         contentValues.put(DatabaseHelperClass.NAME, employeeModelClass.getName());
         contentValues.put(DatabaseHelperClass.EMAIL, employeeModelClass.getEmail());
         contentValues.put(DatabaseHelperClass.VILLE, employeeModelClass.getVille());
+        contentValues.put(DatabaseHelperClass.AGE, employeeModelClass.getAge());
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.insert(DatabaseHelperClass.TABLE_NAME, null,contentValues);
     }
@@ -69,7 +71,8 @@ public class DatabaseHelperClass extends SQLiteOpenHelper {
                 String name = cursor.getString(1);
                 String email = cursor.getString(2);
                 String Ville = cursor.getString(3);
-                storeEmployee.add(new EmployeeModelClass(id,name,email,Ville));
+                String age = cursor.getString(4);
+                storeEmployee.add(new EmployeeModelClass(id,name,email,Ville,age));
             }while (cursor.moveToNext());
         }
         cursor.close();
@@ -81,6 +84,7 @@ public class DatabaseHelperClass extends SQLiteOpenHelper {
         contentValues.put(DatabaseHelperClass.NAME,employeeModelClass.getName());
         contentValues.put(DatabaseHelperClass.EMAIL,employeeModelClass.getEmail());
         contentValues.put(DatabaseHelperClass.VILLE, employeeModelClass.getVille());
+        contentValues.put(DatabaseHelperClass.AGE, employeeModelClass.getAge());
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.update(TABLE_NAME,contentValues,ID + " = ?" , new String[]
                 {String.valueOf(employeeModelClass.getId())});

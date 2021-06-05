@@ -44,6 +44,7 @@ public class EmployeeAdapterClass extends RecyclerView.Adapter<EmployeeAdapterCl
         holder.editText_Name.setText(employeeModelClass.getName());
         holder.editText_Email.setText(employeeModelClass.getEmail());
         holder.editText_Ville.setText(employeeModelClass.getVille());
+        holder.editText_Age.setText(employeeModelClass.getAge());
 
         holder.button_Edit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +52,8 @@ public class EmployeeAdapterClass extends RecyclerView.Adapter<EmployeeAdapterCl
                 String stringName = holder.editText_Name.getText().toString();
                 String stringEmail = holder.editText_Email.getText().toString();
                 String stringVille = holder.editText_Ville.getText().toString();
-                databaseHelperClass.updateEmployee(new EmployeeModelClass(employeeModelClass.getId(),stringName,stringEmail,stringVille));
+                String stringAge = holder.editText_Age.getText().toString();
+                databaseHelperClass.updateEmployee(new EmployeeModelClass(employeeModelClass.getId(),stringName,stringEmail,stringVille,stringAge));
                 notifyDataSetChanged();
                 ((Activity) context).finish();
                 context.startActivity(((Activity) context).getIntent());
@@ -79,6 +81,7 @@ public class EmployeeAdapterClass extends RecyclerView.Adapter<EmployeeAdapterCl
         EditText editText_Name;
         EditText editText_Email;
         EditText editText_Ville;
+        EditText editText_Age;
         Button button_Edit;
         Button button_delete;
 
@@ -89,6 +92,7 @@ public class EmployeeAdapterClass extends RecyclerView.Adapter<EmployeeAdapterCl
             editText_Name = itemView.findViewById(R.id.edittext_name);
             editText_Email = itemView.findViewById(R.id.edittext_email);
             editText_Ville = itemView.findViewById(R.id.edittext_City);
+            editText_Age = itemView.findViewById(R.id.edittext_age);
             button_delete = itemView.findViewById(R.id.button_delete);
             button_Edit = itemView.findViewById(R.id.button_edit);
 

@@ -13,7 +13,7 @@ import com.org.MarathonApp.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText editText_name,editText_email,editText_Date,editText_Ville;
+    EditText editText_name,editText_email,editText_Age,editText_Ville;
     Button button_add,button_view;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         editText_name = findViewById(R.id.edittext_name);
         editText_email = findViewById(R.id.edittext_email);
         editText_Ville = findViewById(R.id.edittext_City);
+        editText_Age = findViewById(R.id.edittext_age);
         button_add = findViewById(R.id.button_add);
         button_view = findViewById(R.id.button_view);
 
@@ -33,14 +34,15 @@ public class MainActivity extends AppCompatActivity {
                 String stringName = editText_name.getText().toString();
                 String stringEmail = editText_email.getText().toString();
                 String stringVille = editText_Ville.getText().toString();
+                String stringAge = editText_Age.getText().toString();
 
                 if (stringName.length() <=0 || stringEmail.length() <=0){
-                    Toast.makeText(MainActivity.this, "Enter All Data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Plz Enter All Data", Toast.LENGTH_SHORT).show();
                 }else {
                     DatabaseHelperClass databaseHelperClass = new DatabaseHelperClass(MainActivity.this);
-                    EmployeeModelClass employeeModelClass = new EmployeeModelClass(stringName,stringEmail,stringVille);
+                    EmployeeModelClass employeeModelClass = new EmployeeModelClass(stringName,stringEmail,stringVille,stringAge);
                     databaseHelperClass.addEmployee(employeeModelClass);
-                    Toast.makeText(MainActivity.this, "Add Employee Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Add Candidat Successfully", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
                 }

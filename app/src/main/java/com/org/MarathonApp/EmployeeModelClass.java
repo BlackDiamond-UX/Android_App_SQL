@@ -6,18 +6,21 @@ public class EmployeeModelClass {
     String name;
     String email;
     String Ville;
+    String age;
 
-    public EmployeeModelClass(String name, String email,String Ville) {
+    public EmployeeModelClass(String name, String email,String Ville,String age) {
         this.name = name;
         this.email = email;
         this.Ville = Ville;
+        this.age = age;
     }
 
-    public EmployeeModelClass(Integer id, String name, String email, String Ville) {
+    public EmployeeModelClass(Integer id, String name, String email, String Ville,String age) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.Ville = Ville;
+        this.age = age;
     }
 
     public Integer getId() {
@@ -47,4 +50,8 @@ public class EmployeeModelClass {
     public String getVille() { return Ville; }
 
     public void setVille(String ville) { Ville = ville; }
+
+    public String getAge() { return age; }
+
+    public void setAge(String age) { this.age = age; }
 }

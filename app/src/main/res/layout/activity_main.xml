@@ -32,6 +32,15 @@
         android:minHeight="48dp" />
 
     <EditText
+        android:id="@+id/edittext_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Age"
+        android:inputType="date"
+        android:minHeight="48dp" />
+
+    <EditText
         android:id="@+id/edittext_City"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
