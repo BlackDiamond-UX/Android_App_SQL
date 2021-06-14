@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.org.MarathonApp.R;
-
 public class MainActivity extends AppCompatActivity {
 
     EditText editText_name,editText_email,editText_Age,editText_Ville;
@@ -40,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Plz Enter All Data", Toast.LENGTH_SHORT).show();
                 }else {
                     DatabaseHelperClass databaseHelperClass = new DatabaseHelperClass(MainActivity.this);
-                    EmployeeModelClass employeeModelClass = new EmployeeModelClass(stringName,stringEmail,stringVille,stringAge);
-                    databaseHelperClass.addEmployee(employeeModelClass);
+                    CandidatModelClass candidatModelClass = new CandidatModelClass(stringName,stringEmail,stringVille,stringAge);
+                    databaseHelperClass.addCandidat(candidatModelClass);
                     Toast.makeText(MainActivity.this, "Add Candidat Successfully", Toast.LENGTH_SHORT).show();
                     finish();
                     startActivity(getIntent());
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         button_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ViewEmployeeActivity.class);
+                Intent intent = new Intent(MainActivity.this, ViewCandidatActivity.class);
                 startActivity(intent);
             }
         });

@@ -7,8 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.org.MarathonApp.EmployeeModelClass;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,9 +16,9 @@ public class DatabaseHelperClass extends SQLiteOpenHelper {
     //Database version
     private static final int DATABASE_VERSION = 1;
     //Database Name
-    private static final String DATABASE_NAME = "employee_database";
+    private static final String DATABASE_NAME = "candidat_database";
     //Database Table name
-    private static final String TABLE_NAME = "EMPLOYEE";
+    private static final String TABLE_NAME = "CANDIDAT";
     //Table columns
     public static final String ID = "id";
     public static final String NAME = "name";
@@ -50,20 +48,20 @@ public class DatabaseHelperClass extends SQLiteOpenHelper {
     }
 
     //Add Employee Data
-    public void addEmployee(EmployeeModelClass employeeModelClass){
+    public void addCandidat(CandidatModelClass candidatModelClass){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelperClass.NAME, employeeModelClass.getName());
-        contentValues.put(DatabaseHelperClass.EMAIL, employeeModelClass.getEmail());
-        contentValues.put(DatabaseHelperClass.VILLE, employeeModelClass.getVille());
-        contentValues.put(DatabaseHelperClass.AGE, employeeModelClass.getAge());
+        contentValues.put(DatabaseHelperClass.NAME, candidatModelClass.getName());
+        contentValues.put(DatabaseHelperClass.EMAIL, candidatModelClass.getEmail());
+        contentValues.put(DatabaseHelperClass.VILLE, candidatModelClass.getVille());
+        contentValues.put(DatabaseHelperClass.AGE, candidatModelClass.getAge());
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.insert(DatabaseHelperClass.TABLE_NAME, null,contentValues);
     }
 
-    public List<EmployeeModelClass> getEmployeeList(){
+    public List<CandidatModelClass> getCandidatList(){
         String sql = "select * from " + TABLE_NAME;
         sqLiteDatabase = this.getReadableDatabase();
-        List<EmployeeModelClass> storeEmployee = new ArrayList<>();
+        List<CandidatModelClass> storeEmployee = new ArrayList<>();
         Cursor cursor = sqLiteDatabase.rawQuery(sql,null);
         if (cursor.moveToFirst()){
             do {
@@ -72,25 +70,25 @@ public class DatabaseHelperClass extends SQLiteOpenHelper {
                 String email = cursor.getString(2);
                 String Ville = cursor.getString(3);
                 String age = cursor.getString(4);
-                storeEmployee.add(new EmployeeModelClass(id,name,email,Ville,age));
+                storeCandidat.add(new CandidatModelClass(id,name,email,Ville,age));
             }while (cursor.moveToNext());
         }
         cursor.close();
-        return storeEmployee;
+        return storeCandidat;
     }
 
-    public void updateEmployee(EmployeeModelClass employeeModelClass){
+    public void updateCandidat(CandidatModelClass candidatModelClass){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelperClass.NAME,employeeModelClass.getName());
-        contentValues.put(DatabaseHelperClass.EMAIL,employeeModelClass.getEmail());
-        contentValues.put(DatabaseHelperClass.VILLE, employeeModelClass.getVille());
-        contentValues.put(DatabaseHelperClass.AGE, employeeModelClass.getAge());
+        contentValues.put(DatabaseHelperClass.NAME, candidatModelClass.getName());
+        contentValues.put(DatabaseHelperClass.EMAIL, candidatModelClass.getEmail());
+        contentValues.put(DatabaseHelperClass.VILLE, candidatModelClass.getVille());
+        contentValues.put(DatabaseHelperClass.AGE, candidatModelClass.getAge());
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.update(TABLE_NAME,contentValues,ID + " = ?" , new String[]
-                {String.valueOf(employeeModelClass.getId())});
+                {String.valueOf(candidatModelClass.getId())});
     }
 
-    public void deleteEmployee(int id){
+    public void deleteCandidat(int id){
         sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.delete(TABLE_NAME, ID + " = ? ", new String[]
                 {String.valueOf(id)});
